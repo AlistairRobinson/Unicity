@@ -6,11 +6,6 @@ from unicity.stats import unicity
 def main():
 
     args = construct_parser().parse_args()
-    args.f = args.f if args.f else "data/clean.csv"
-    args.u = args.u if args.u else "user id"
-    args.s = args.s if args.s else "2014-06-01"
-    args.e = args.e if args.e else "2014-06-02"
-    args.p = int(args.p) if args.p else 1
 
     try:
         data = pd.read_csv(args.f, parse_dates=["start time", "end time"], dayfirst=True)
