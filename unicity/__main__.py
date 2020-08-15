@@ -14,9 +14,10 @@ def main():
         data = pd.read_csv(args.f, parse_dates=["time"], dayfirst=True)
 
     data = data[(data["time"] >= args.s) & (data["time"] < args.e)]
-    print(data)
+    if args.v:
+        print(data)
 
-    s, t = unicity(data, args.u, args.p)
+    s, t = unicity(data, args.u, args.p, args.v)
     print("\nFinal unicity score: {}, {} trials".format(s / t, t))
 
 main()
