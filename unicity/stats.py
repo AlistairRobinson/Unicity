@@ -1,10 +1,13 @@
 from itertools import combinations
 from math import factorial as fact
+import sys
 import pandas as pd
 import progressbar as pb
 
+success, trials = 0, 0
+
 def unicity(data: pd.DataFrame, id: str, p: int, v: bool):
-    success, trials = 0, 0
+    global success, trials
     pbar = pb.ProgressBar(max_value=len(set(data[id])), redirect_stdout=True, term_width=100)
     for user in pbar(set(data[id])):
         trajectory = data[data[id] == user].drop(id, axis=1).to_dict(orient="records")
@@ -24,3 +27,7 @@ def unicity(data: pd.DataFrame, id: str, p: int, v: bool):
             success += 1 if len(possible_users) == 1 else 0
             trials += 1
     return (success, trials)
+
+def signal_handler(s, frame):
+    print("\nFinal unicity score: {}, {} trials".format(success / trials, trials), file=sys.stderr)
+    sys.exit(0)

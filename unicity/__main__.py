@@ -1,7 +1,8 @@
+import signal
 import pandas as pd
 from unicity.parser import construct_parser
 from unicity.clean import clean_data
-from unicity.stats import unicity
+from unicity.stats import unicity, signal_handler
 
 def main():
 
@@ -17,6 +18,8 @@ def main():
     data = data[(data["time"] >= args.s) & (data["time"] < args.e)]
     if args.v:
         print(data)
+
+    signal.signal(signal.SIGINT, signal_handler)
 
     s, t = unicity(data, args.u, args.p, args.v)
     print("\nFinal unicity score: {}, {} trials".format(s / t, t))
