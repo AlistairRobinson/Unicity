@@ -9,7 +9,8 @@ def main():
 
     try:
         data = pd.read_csv(args.f, parse_dates=["start time", "end time"], dayfirst=True)
-        data = clean_data(data)
+        data = clean_data(data, args.r)
+        data.to_csv("data/{}.csv".format(args.r), index=False)
     except ValueError:
         data = pd.read_csv(args.f, parse_dates=["time"], dayfirst=True)
 
