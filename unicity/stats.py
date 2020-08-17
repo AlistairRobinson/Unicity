@@ -26,6 +26,8 @@ def unicity(data: pd.DataFrame, id: str, p: int, v: bool):
                     break
             success += 1 if len(possible_users) == 1 else 0
             trials += 1
+            if trials >= 100000 and p >= 5:
+                return (success, trials)
     return (success, trials)
 
 def signal_handler(s, frame):

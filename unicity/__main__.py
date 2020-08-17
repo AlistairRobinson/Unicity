@@ -1,4 +1,4 @@
-import signal
+import signal, sys
 import pandas as pd
 from unicity.parser import construct_parser
 from unicity.clean import clean_data
@@ -22,6 +22,6 @@ def main():
     signal.signal(signal.SIGINT, signal_handler)
 
     s, t = unicity(data, args.u, args.p, args.v)
-    print("\nFinal unicity score: {}, {} trials".format(s / t, t))
+    print("\nFinal unicity score: {}, {} trials".format(s / t, t), file=sys.stderr)
 
 main()
