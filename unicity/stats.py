@@ -8,6 +8,7 @@ success, trials = 0, 0
 
 def unicity(data: pd.DataFrame, id: str, p: int, v: bool):
     global success, trials
+    success, trials = 0, 0
     pbar = pb.ProgressBar(max_value=len(set(data[id])), redirect_stdout=True, term_width=100)
     for user in pbar(set(data[id])):
         trajectory = data[data[id] == user].drop(id, axis=1).to_dict(orient="records")
