@@ -38,7 +38,7 @@ def unicity(data: pd.DataFrame, id: str, p: int, v: bool):
         for subtrajectory in combinations(trajectory, p):
             # Find the set of possible users which could constitute a match
             possible_users = set(data[id])
-			# Determine whether the subtrajectory is uniquely characterised
+            # Determine whether the subtrajectory is uniquely characterised
             for observation in subtrajectory:
 
                 # Find the data associated with potential matches
